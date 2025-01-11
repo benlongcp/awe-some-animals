@@ -1,7 +1,11 @@
-import AnimalCard from "./AnimalCard"
+import AnimalCard from "./AnimalCard.jsx"
 import { Button, Box } from "@mui/material"
 import { useState, useEffect } from "react"
 import animalData from './../../animalData.json'
+import { DndProvider, useDrag } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import Fate from "./Fate.jsx"
+
 
 
 function App() {
@@ -9,6 +13,12 @@ function App() {
   const { animalNames } = animalData
   const length = animalNames.length
   const [animals, setAnimals] = useState([])
+  const [fates, setFates] = useState(['adopt', 'wrestle', 'eat'])
+
+  const [adoptDrop, setAdoptDrop] = useState(false)
+  const [wrestleDrop, setWrestleDrop] = useState(false)
+  const [eatDrop, setEatDrop] = useState(false)
+
   
 
   const randAnimals = () =>{
@@ -29,29 +39,48 @@ function App() {
 
   })
 
+  
 
-
-console.log("LES ANIMAUX:", animals)
+// console.log("LES ANIMAUX:", animals)
 
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '18px'}}>
-      <Button variant="contained" sx={{background: 'Coral', width: '120px'}} onClick={randAnimals}>NEW AWE</Button>
-      {animals.length === 3 ?
-      <Box sx={{display: 'flex', flexDirection: 'row', gap: "18px"}}>
-        {console.log("!!!", animals.length)}
-        {animals.map(animal=>(
-          <Box>
-          <AnimalCard
-            sx={{gap: 2}}
-            animalName={animal}
-          />
-          </Box>
-        ))}
+
+    <DndProvider backend={HTML5Backend}>
+      <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '18px'}}>
+
+        <Button variant="contained" sx={{background: 'Coral', width: '120px'}} onClick={randAnimals}>NEW AWE</Button>
+
+        <Box sx={{display: 'flex', flexDirection: 'row', gap: "18px"}}>
+          {fates.map(fate => (
+            <Fate key={fate} fate={fate}/>
+          ))}
+
+
+        </Box>
+
+
+
+
+        {animals.length === 3 ?
+        <Box sx={{display: 'flex', flexDirection: 'row', gap: "18px"}}>
+          {console.log("!!!", animals.length)}
+          {animals.map(animal=>(
+            <Box key={animal}>
+            <AnimalCard
+              sx={{gap: 2}}
+              animalName={animal}
+            />
+            </Box>
+          ))}
+        </Box>
+        :
+          null
+        }
+
+
+
       </Box>
-      :
-        null
-      }
-    </Box>
+    </DndProvider>
   )
 }
 
