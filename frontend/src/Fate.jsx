@@ -23,7 +23,7 @@ function Fate({
   return (
     <Box ref={drag}
     id='adopt'
-    sx={{backgroundColor: 'green', padding: '4px'}}
+    sx={{backgroundColor: 'green', padding: '16px'}}
     style={{border: isDragging ? '5px solid pink' : '0px' }}>
       {fate}
     </Box>

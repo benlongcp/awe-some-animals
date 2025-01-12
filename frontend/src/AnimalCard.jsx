@@ -14,11 +14,12 @@ export default function AnimalCard ({
 
 }) {
 
-  const [{isOver}, drop] = useDrop(()=>({
+  const [{canDrop, isOver}, drop] = useDrop(()=>({
     accept: 'box',
     drop: (item) => addFate(item.id),
     collect: (monitor)=>({
-      isOver: !!monitor.isOver()
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop()
     })
   }))
 
@@ -29,7 +30,7 @@ export default function AnimalCard ({
   }
 
   return (
-    <Card sx={{ maxWidth: 275, background: 'AliceBlue' }}>
+    <Card sx={{ maxWidth: 275, background: isOver? 'blue' : 'AliceBlue', border: canDrop? '5px solid pink' : '0px' }} ref={drop}>
       <CardContent>
         <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
           {animalName}

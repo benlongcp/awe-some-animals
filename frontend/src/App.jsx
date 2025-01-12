@@ -63,7 +63,6 @@ function App() {
 
         {animals.length === 3 ?
         <Box sx={{display: 'flex', flexDirection: 'row', gap: "18px"}}>
-          {console.log("!!!", animals.length)}
           {animals.map(animal=>(
             <Box key={animal}>
             <AnimalCard
