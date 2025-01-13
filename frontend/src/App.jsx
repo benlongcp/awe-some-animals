@@ -46,9 +46,9 @@ function App() {
   return (
 
     <DndProvider backend={HTML5Backend}>
-      <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '18px'}}>
+      <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '18px', backgroundColor: "#CBD4C2", height: "100vh"}}>
 
-        <Button variant="contained" sx={{background: 'Coral', width: '120px'}} onClick={randAnimals}>NEW AWE</Button>
+        <Button variant="contained" sx={{background: '#E57A44', width: '120px', margin: '16px'}} onClick={randAnimals}>NEW AWE</Button>
 
         <Box sx={{display: 'flex', flexDirection: 'row', gap: "18px"}}>
           {fates.map(fate => (

@@ -16,15 +16,29 @@ function Fate({
     })
   }))
 
+  const color = () =>{
+    if (fate === "adopt"){
+      return '#B4A0E5'
+    }
+    
+    if (fate === "wrestle"){
+      return '#436436'
+    }
+    
+    if (fate === "eat"){
+      return '#72A1E5'
+    }
+    
 
+  }
 
 
 
   return (
     <Box ref={drag}
     id='adopt'
-    sx={{backgroundColor: 'green', padding: '16px'}}
-    style={{border: isDragging ? '5px solid pink' : '0px' }}>
+    sx={{backgroundColor: color(), padding: '16px', borderRadius: '4px', "&:hover": { cursor: "pointer" }}}
+    style={{border: isDragging ? '5px solid #FF99C8' : '0px'}}>
       {fate}
     </Box>
   )
