@@ -50,25 +50,9 @@ function App() {
   return (
 
     <DndProvider backend={HTML5Backend}>
-      <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '18px', backgroundColor: "#CBD4C2", height: "100vh"}}>
+      <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: '18px', backgroundColor: "#CBD4C2", height: "100vh"}}>
 
-        <Button variant="contained" sx={{background: '#E57A44', width: '120px', margin: '16px'}} onClick={randAnimals}>NEW AWE</Button>
-
-        <Box sx={{display: 'flex', flexDirection: 'row', gap: "18px"}}>
-          {fates.map(fate => (
-            <Fate 
-            key={fate} 
-            fate={fate}
-            adoptDrop={adoptDrop}
-            wrestleDrop={wrestleDrop}
-            eatDrop={eatDrop}
-            
-            />
-          ))}
-
-
-        </Box>
-
+      <h1>ADOPT, WRESTLE, or EAT</h1>
 
 
 
@@ -92,6 +76,32 @@ function App() {
         :
           <AnimalCard/>
         }
+
+
+
+
+
+
+        <Box sx={{display: 'flex', flexDirection: 'row', gap: "18px"}}>
+          {fates.map(fate => (
+            <Fate 
+            key={fate} 
+            fate={fate}
+            adoptDrop={adoptDrop}
+            wrestleDrop={wrestleDrop}
+            eatDrop={eatDrop}
+            
+            />
+          ))}
+
+
+        </Box>
+        DRAG &apos;N DROP
+
+        <Button variant="contained" sx={{background: '#E57A44', width: '120px', margin: '16px'}} onClick={randAnimals}>NEW AWE</Button>
+
+
+
 
 
 

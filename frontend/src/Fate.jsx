@@ -55,27 +55,27 @@ function Fate({
 
   return (
 
-    <>
-    { enable() ?
-      <Box ref={drag}
-      id='adopt'
-  
-      sx={{backgroundColor: color(), padding: '16px', aspectRatio: '1 / 1', borderRadius: '100%', "&:hover": { cursor: "pointer" }}}
-      style={{border: isDragging ? '5px solid #FF99C8' : '0px'}}>
-        {fate}
-      </Box>
+    <Box>
+      { enable() ?
+        <Box ref={drag}
+    
+    
+        sx={{display: 'flex', minHeight: '48px', justifyContent: 'center', textAlign: 'center', alignItems: 'center', backgroundColor: color(), padding: '16px', aspectRatio: '1 / 1', borderRadius: '100%', "&:hover": { cursor: "pointer" }}}
+        style={{border: isDragging ? '5px solid #FF99C8' : '0px'}}>
+          {fate}
+        </Box>
 
-      :
-      <Box 
-      id='adopt'
-  
-      sx={{backgroundColor: color(), padding: '16px', aspectRatio: '1 / 1', borderRadius: '100%', "&:hover": { cursor: "pointer" }}}
-      style={{border: isDragging ? '5px solid #FF99C8' : '0px'}}>
-        {fate}
-      </Box>
+        :
+        <Box 
+      
+    
+        sx={{minHeight: '48px', alignItems: 'center' , textAlign: 'center', backgroundColor: color(), padding: '16px', aspectRatio: '1 / 1', borderRadius: '100%', "&:hover": { cursor: "pointer" }}}
+        style={{border: isDragging ? '5px solid #FF99C8' : '0px'}}>
+          
+        </Box>
 
-    }
-</>
+      }
+    </Box>
 
 
 

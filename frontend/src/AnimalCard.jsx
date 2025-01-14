@@ -69,7 +69,7 @@ export default function AnimalCard ({
 
 
   return (
-    <Card sx={{ maxWidth: 275, background: fate ? fateColor : isOver? overColor : defaultColor, border: canDrop? '5px solid #FF99C8' : '0px' }} ref={!fate ? drop : null}>
+    <Card sx={{ minHeight: '180px', maxWidth: 275, background: fate ? fateColor : isOver? overColor : defaultColor, border: canDrop? '5px solid #FF99C8' : '0px' }} ref={!fate ? drop : null}>
       <CardContent>
           {animalName ? 
 
@@ -77,7 +77,9 @@ export default function AnimalCard ({
           {animalName}
           </Typography>
           :
-          <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
+          <Typography gutterBottom sx={{ justifyContent: 'center', textAlign: 'center', alignItems: 'center', color: 'text.secondary', fontSize: 14 }}>
+            Select NEW AWE to
+
             &quot;MEAT&quot; SOME ANIMALS
           </Typography>
 
