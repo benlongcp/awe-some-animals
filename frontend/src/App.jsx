@@ -8,6 +8,7 @@ import Fate from "./Fate.jsx"
 
 
 
+
 function App() {
 
   const { animalNames } = animalData
@@ -33,6 +34,9 @@ function App() {
     // console.log("ANIMALS", animal1, animal2, animal3)
 
     setAnimals([animal1, animal2, animal3])
+    setAdoptDrop(false)
+    setWrestleDrop(false)
+    setEatDrop(false)
   }
 
   useEffect(()=>{
@@ -52,7 +56,14 @@ function App() {
 
         <Box sx={{display: 'flex', flexDirection: 'row', gap: "18px"}}>
           {fates.map(fate => (
-            <Fate key={fate} fate={fate}/>
+            <Fate 
+            key={fate} 
+            fate={fate}
+            adoptDrop={adoptDrop}
+            wrestleDrop={wrestleDrop}
+            eatDrop={eatDrop}
+            
+            />
           ))}
 
 
@@ -68,12 +79,18 @@ function App() {
             <AnimalCard
               sx={{gap: 2}}
               animalName={animal}
+          
+              setAdoptDrop={setAdoptDrop}
+              setWrestleDrop={setWrestleDrop}
+              setEatDrop={setEatDrop}
+
+
             />
             </Box>
           ))}
         </Box>
         :
-          null
+          <AnimalCard/>
         }
 
 
