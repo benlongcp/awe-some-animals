@@ -2,9 +2,9 @@ import AnimalCard from "./AnimalCard.jsx"
 import { Button, Box } from "@mui/material"
 import { useState, useEffect } from "react"
 import animalData from './../../animalData.json'
-import { DndProvider, useDrag } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+
 import Fate from "./Fate.jsx"
+
 
 
 
@@ -15,12 +15,13 @@ function App() {
   const length = animalNames.length
   const [animals, setAnimals] = useState([])
   const [fates, setFates] = useState(['adopt', 'wrestle', 'eat'])
-
   const [adoptDrop, setAdoptDrop] = useState(false)
   const [wrestleDrop, setWrestleDrop] = useState(false)
   const [eatDrop, setEatDrop] = useState(false)
 
-  
+  const [allAnimals, setAllAnimals] = useState(null)
+  const [fatesChosen, setFatesChosen] = useState(adoptDrop && wrestleDrop && eatDrop)
+  const [displayAnimal, setDisplayAnimal] = useState({})
 
   const randAnimals = () =>{
     let randInt1 = Math.floor((Math.random() * length))
@@ -37,22 +38,35 @@ function App() {
     setAdoptDrop(false)
     setWrestleDrop(false)
     setEatDrop(false)
+    setDisplayAnimal({})
   }
+
+
 
   useEffect(()=>{
 
-  })
+    const fetchAnimals = async () =>{
+      const response = await fetch(`http://localhost:4000/api/animals`)
+      const json = await response.json()
+      console.log("JSON DATA", json)
 
-  
+      if (response.ok){
+        setAllAnimals(json)
+      }
+    }
+    fetchAnimals()
 
-// console.log("LES ANIMAUX:", animals)
+  }, [])
+
+
 
   return (
 
-    <DndProvider backend={HTML5Backend}>
+  
       <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: '18px', backgroundColor: "#CBD4C2", height: "100vh"}}>
 
       <h1>ADOPT, WRESTLE, or EAT</h1>
+      {console.log(displayAnimal)}
 
 
 
@@ -67,6 +81,7 @@ function App() {
               setAdoptDrop={setAdoptDrop}
               setWrestleDrop={setWrestleDrop}
               setEatDrop={setEatDrop}
+              setDisplayAnimal={setDisplayAnimal}
 
 
             />
@@ -106,7 +121,7 @@ function App() {
 
 
       </Box>
-    </DndProvider>
+
   )
 }
 

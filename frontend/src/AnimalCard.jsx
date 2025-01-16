@@ -15,10 +15,8 @@ export default function AnimalCard ({
   animalName,
   setAdoptDrop,
   setWrestleDrop,
-  setEatDrop
-
-  
-
+  setEatDrop,
+  setDisplayAnimal
 }) {
 
   const [fate, setFate] = useState('')
@@ -40,6 +38,7 @@ export default function AnimalCard ({
   useEffect(()=>{
 
   })
+
   const addFate = (id)=>{
 
     console.log("id", id)
@@ -64,9 +63,16 @@ export default function AnimalCard ({
 
   }
 
+  const catchAnimal = async (animal) =>{
+    const response = await fetch(`http://localhost:4000/api/wildAnimals/${animal}`)
+    const json = await response.json()
 
+    if (response.ok){
+      console.log("JSON DATA", json)
+      setDisplayAnimal(json[0])
 
-
+    }
+  }
 
   return (
     <Card sx={{ minHeight: '180px', maxWidth: 275, background: fate ? fateColor : isOver? overColor : defaultColor, border: canDrop? '5px solid #FF99C8' : '0px' }} ref={!fate ? drop : null}>
@@ -77,7 +83,7 @@ export default function AnimalCard ({
           {animalName}
           </Typography>
           :
-          <Typography gutterBottom sx={{ justifyContent: 'center', textAlign: 'center', alignItems: 'center', color: 'text.secondary', fontSize: 14 }}>
+          <Typography gutterBottom sx={{ justifyContent: 'center', textAlign: 'center', alignItems: 'center', color: 'text.secondary', fontSize: 14, paddingTop: '25%' }}>
             Select NEW AWE to
 
             &quot;MEAT&quot; SOME ANIMALS
@@ -101,8 +107,10 @@ export default function AnimalCard ({
       </CardContent>
       <CardActions>
       {fate?
-        <Button size="small">Learn More</Button>
-      : 
+        <Button size="small"
+          onClick={()=>{catchAnimal(animalName)}}
+        >Learn More</Button>
+      :
 
       null}
 
